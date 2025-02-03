@@ -115,7 +115,7 @@ cd ..
 pip install -r requirements.txt
 ```
 
-You need to first apply for a Google Search API key at [serper.dev](https://serper.dev/), and replace the 'your google keys' in `utils.py`.
+You need to first apply for a Google Search API key at [serper.dev](https://serper.dev/), and replace 'your google keys' in `utils.py`.
 
 ```python
 python run_paper_agent.py
@@ -126,7 +126,7 @@ python run_paper_agent.py
 
 ## Training Your Own Agent
 
-We modify the code of `trl` and `transformers`, you can do SFT and PPO training after clone and install them.
+We modify the code of `trl` and `transformers`, you can do SFT and PPO training after cloning and installing them.
 
 [https://github.com/hyc2026/trl](https://github.com/hyc2026/trl) \
 [https://github.com/hyc2026/transformers](https://github.com/hyc2026/transformers)
@@ -246,7 +246,7 @@ accelerate launch \
 ```
 
 ## Citation
-Pleae cite us as:
+Please cite us as:
 
 ```BibTeX
 @misc{he2024pasa,
