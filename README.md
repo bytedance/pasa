@@ -1,4 +1,8 @@
-# PaSa: An LLM Agent for Comprehensive Academic Paper Search
+# <div align="center">PaSa: An LLM Agent for Comprehensive Academic Paper Search<br>ACL 2025 (Main)</div>
+<div align="center">
+    ByteDance Seed
+
+<br>
 
 [![arXiv](https://img.shields.io/badge/arXiv-2501.10120-b31b1b.svg)](https://arxiv.org/abs/2501.10120)
 [![Demo](https://img.shields.io/badge/demo-pasa--agent-blue)](https://pasa-agent.ai)
@@ -6,7 +10,6 @@
 [![Model](https://img.shields.io/badge/model_HF-selector-darkgreen)](https://huggingface.co/bytedance-research/pasa-7b-selector)
 [![Data](https://img.shields.io/badge/data-pasa--dataset-F9D371)](https://huggingface.co/datasets/CarlanLark/pasa-dataset)
 
-<div align="center">
   <a href="https://pasa-agent.ai">
     <img src="src/pasa.png" width = "60%">
   </a>
