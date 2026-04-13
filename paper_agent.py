@@ -11,18 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import re
 import json
+import re
 import threading
+from datetime import datetime
+
+from models import Agent
 from paper_node import PaperNode
-from models     import Agent
-from datetime   import datetime
-from utils      import (
-    search_paper_by_title,
-    google_search_arxiv_id,
-    search_paper_by_arxiv_id,
-    search_section_by_arxiv_id
-)
+from utils import google_search_arxiv_id, search_paper_by_arxiv_id, search_paper_by_title, search_section_by_arxiv_id
+
 
 class PaperAgent:
     def __init__(

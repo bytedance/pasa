@@ -13,6 +13,7 @@
 # limitations under the License.
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+
 class Agent:
     def __init__(self, model_name):
         self.model = AutoModelForCausalLM.from_pretrained(
