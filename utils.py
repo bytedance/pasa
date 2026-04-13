@@ -19,15 +19,17 @@ Please note that:
    If there are any bugs or improvement suggestions, you can submit pull requests.
    We would greatly appreciate and look forward to your contributions!!
 """
-import re
-import bs4
 import json
-import arxiv
+import re
 import urllib
-import zipfile
 import warnings
+import zipfile
+from datetime import datetime
+
+import arxiv
+import bs4
 import requests
-from datetime   import datetime
+
 warnings.simplefilter("always")
 
 GOOGLE_KEY   = 'your google keys'
@@ -254,7 +256,7 @@ def search_section_by_arxiv_id(entry_id, cite):
         response = requests.get(url)
         if response.status_code == 200:
             html_content = response.text
-            if not 'https://ar5iv.labs.arxiv.org/html' in html_content:
+            if 'https://ar5iv.labs.arxiv.org/html' not in html_content:
                 warnings.warn(f'Invalid ar5iv HTML document: {url}')
                 return None
             else:
@@ -266,7 +268,7 @@ def search_section_by_arxiv_id(entry_id, cite):
                 try:
                     sections = get_2nd_section(document["sections"][0]["subsections"])
                 except:
-                    warnings.warn(f'Get subsections error')
+                    warnings.warn('Get subsections error')
                     return None
                 sections2title = {}
                 for k, v in sections.items():

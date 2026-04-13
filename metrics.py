@@ -11,12 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import os
-import json
-import glob
 import argparse
-from tqdm       import tqdm
-from utils      import keep_letters, cal_micro
+import glob
+import json
+import os
+
+from tqdm import tqdm
+
+from utils import cal_micro, keep_letters
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--output_folder',  type=str, default="results")

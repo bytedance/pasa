@@ -19,12 +19,13 @@ Please note that:
    If there are any bugs or improvement suggestions, you can submit pull requests.
    We would greatly appreciate and look forward to your contributions!!
 """
-import os
-import json
 import argparse
-from models      import Agent
+import json
+import os
+from datetime import datetime, timedelta
+
+from models import Agent
 from paper_agent import PaperAgent
-from datetime    import datetime, timedelta
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_file',     type=str, default="data/RealScholarQuery/test.jsonl")
