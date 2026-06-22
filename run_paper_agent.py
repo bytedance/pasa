@@ -53,7 +53,7 @@ with open(args.input_file) as f:
             selector       = selector,
             end_date       = end_date,
             expand_layers  = args.expand_layers,
-            search_queries = args.expand_papers,
+            search_queries = args.search_queries,
             search_papers  = args.search_papers,
             expand_papers  = args.expand_papers,
             threads_num    = args.threads_num
