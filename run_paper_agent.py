@@ -13,8 +13,8 @@
 # limitations under the License.
 """
 Please note that:
-1. You need to first apply for a Google Search API key at https://serpapi.com/,
-   and replace the 'your google keys' in utils.py before you can use it.
+1. Unconfigured searches use Parallel Search MCP without a key. Set
+   SERPER_API_KEY for Google Serper, or choose --search_provider explicitly.
 2. The service for searching arxiv and obtaining paper contents is relatively simple. 
    If there are any bugs or improvement suggestions, you can submit pull requests.
    We would greatly appreciate and look forward to your contributions!!
@@ -36,6 +36,7 @@ parser.add_argument('--search_queries', type=int, default=5)
 parser.add_argument('--search_papers',  type=int, default=10)
 parser.add_argument('--expand_papers',  type=int, default=20)
 parser.add_argument('--threads_num',    type=int, default=20)
+parser.add_argument('--search_provider', choices=['auto', 'parallel', 'google', 'none'], default=None)
 args = parser.parse_args()
 
 crawler = Agent(args.crawler_path)
@@ -56,7 +57,8 @@ with open(args.input_file) as f:
             search_queries = args.expand_papers,
             search_papers  = args.search_papers,
             expand_papers  = args.expand_papers,
-            threads_num    = args.threads_num
+            threads_num    = args.threads_num,
+            search_provider = args.search_provider
         )
         if "answer" in data:
             paper_agent.root.extra["answer"] = data["answer"]

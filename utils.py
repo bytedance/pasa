@@ -13,13 +13,14 @@
 # limitations under the License.
 """
 Please note that:
-1. You need to first apply for a Google Search API key at https://serpapi.com/,
-   and replace the 'your google keys' below before you can use it.
+1. Unconfigured PaperAgent searches use Parallel Search MCP without a key.
+   For Google Serper, set SERPER_API_KEY or replace 'your google keys' below.
 2. The service for searching arxiv and obtaining paper contents is relatively simple. 
    If there are any bugs or improvement suggestions, you can submit pull requests.
    We would greatly appreciate and look forward to your contributions!!
 """
 import re
+import os
 import bs4
 import json
 import arxiv
@@ -31,6 +32,7 @@ from datetime   import datetime
 warnings.simplefilter("always")
 
 GOOGLE_KEY   = 'your google keys'
+GOOGLE_KEY   = os.getenv('SERPER_API_KEY') or GOOGLE_KEY
 arxiv_client = arxiv.Client(delay_seconds = 0.05)
 id2paper     = json.load(open("data/paper_database/id2paper.json"))
 paper_db     = zipfile.ZipFile("data/paper_database/cs_paper_2nd.zip", "r")
