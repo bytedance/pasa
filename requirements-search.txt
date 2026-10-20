@@ -1,0 +1,7 @@
+# CPU-only dependencies for paper retrieval and search tests (Python 3.10+).
+arxiv
+beautifulsoup4
+lxml
+requests
+httpx>=0.27,<1
+mcp>=1.30,<2

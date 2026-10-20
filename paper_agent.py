@@ -11,11 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+from __future__ import annotations
+
 import re
 import json
 import threading
+import utils
 from paper_node import PaperNode
-from models     import Agent
+from typing import TYPE_CHECKING
+from paper_search import PaperSearch
+if TYPE_CHECKING:
+    from models import Agent
 from datetime   import datetime
 from utils      import (
     search_paper_by_title,
@@ -37,10 +43,12 @@ class PaperAgent:
         search_papers:  int = 10, # per query
         expand_papers:  int = 20, # per layer
         threads_num:    int = 20, # number of threads in parallel at the same time
+        search_provider: str = None, # auto, parallel, google or none
     ) -> None:
         self.user_query = user_query
         self.crawler    = crawler
         self.selector   = selector
+        self.search_tool = PaperSearch(google_search_arxiv_id, utils.GOOGLE_KEY, search_provider)
         self.end_date   = end_date
         self.prompts    = json.load(open(prompts_path))
         self.root       = PaperNode({
@@ -78,10 +86,12 @@ class PaperAgent:
             thread.join()
 
     def search_paper(self, queries):
-        while queries:
+        while True:
             with self.lock:
+                if not queries:
+                    break
                 query, self.root.child[query] = queries.pop(), []
-            pre_arxiv_ids, searched_papers = google_search_arxiv_id(query, self.search_papers, self.end_date), []
+            pre_arxiv_ids, searched_papers = self.search_tool.search(query, self.search_papers, self.end_date), []
             for arxiv_id in pre_arxiv_ids:
                 arxiv_id = arxiv_id.split('v')[0]
                 self.lock.acquire()
